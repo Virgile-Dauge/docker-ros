@@ -1,0 +1,9 @@
+FROM virgiletn/docker-ros:kinetic-core
+LABEL maintainer "virgile.dauge@telecomnancy.net"
+
+# install compilation tools
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-desktop-full \
+    libgl1-mesa-glx  \
+    libgl1-mesa-dri  \
+&& rm -rf /var/lib/apt/lists/*
