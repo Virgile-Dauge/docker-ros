@@ -12,5 +12,6 @@ RUN apt-get -qq update \
 #Changing default shell for multi commands
 SHELL ["bin/bash", "-c"]
 
-#Launching
-CMD rosrun rviz rviz
+#Launching rviz
+CMD source /opt/ros/kinetic/setup.bash \
+        && rosrun rviz rviz
