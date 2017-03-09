@@ -1,6 +1,0 @@
-FROM ros:indigo-ros-core
-LABEL maintainer "virgile.dauge@telecomnancy.net"
-#Changing default shell for multi commands
-SHELL ["bin/bash", "-c"]
-#Launching roscore as default cmd
-CMD roscore
