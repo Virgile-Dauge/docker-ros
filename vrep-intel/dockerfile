@@ -4,6 +4,11 @@ LABEL maintainer "virgile.dauge@telecomnancy.net"
 # install compilation tools
 RUN apt-get update && apt-get install -y \
     wget \
+    cmake \
+    python-tempita \
+    python-catkin-tools \
+    python-lxml \
+    default-jre >/dev/null \
 && rm -rf /var/lib/apt/lists/*
 
 ENV VREP_RELEASE="V-REP_PRO_EDU_V3_3_2_64_Linux"
@@ -33,5 +38,5 @@ RUN mkdir -p ~/saxon/bin \
 RUN cd home/catkin_ws/src \
     && git clone -q https://github.com/fferri/v_repExtRosInterface.git vrep_ros_interface \
     && cd .. \
-    && catkin build --no-status --no-notify --no-summary >/dev/null \
-    && cp -iv devel/lib/libv_repExtRosInterface.so "$VREP_ROOT/"
+    # && catkin build --no-status --no-notify --no-summary >/dev/null \
+    # && cp -iv devel/lib/libv_repExtRosInterface.so "$VREP_ROOT/"
