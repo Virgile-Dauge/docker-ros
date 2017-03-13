@@ -27,4 +27,4 @@ ADD https://raw.githubusercontent.com/virgileTN/my-file /home/
 #Default command launching the node
 CMD cd /home/catkin_ws \
         && source devel/setup.bash \
-&& roslaunch my-ros-package my-ros-package.launch option:=/home/my-file
+        && roslaunch my-ros-package my-ros-package.launch option:=/home/my-file
