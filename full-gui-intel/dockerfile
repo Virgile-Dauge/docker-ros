@@ -1,12 +1,10 @@
-FROM virgiletn/docker-ros:kinetic-core
+FROM virgiletn/docker-ros:kinetic-catkin-ws
 LABEL maintainer "virgile.dauge@telecomnancy.net"
 
-#Add env variable for Qt
-ENV QT_X11_NO_MITSHM=1
-
 # install compilation tools
-RUN apt-get update && apt-get install -y \
-    ros-kinetic-desktop-full \
-    libgl1-mesa-glx  \
-    libgl1-mesa-dri  \
-&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -y \
+      ros-kinetic-desktop-full \
+      libgl1-mesa-glx  \
+      libgl1-mesa-dri  \
+    && rm -rf /var/lib/apt/lists/*
