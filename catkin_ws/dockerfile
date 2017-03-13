@@ -12,9 +12,10 @@ SHELL ["bin/bash", "-c"]
 RUN echo 'source /opt/ros/kinetic/setup.bash' >> .bashrc
 
 # Setup catkin workspace
-RUN source /opt/ros/kinetic/setup.bash && \
-                  mkdir -p /home/catkin_ws/src && \
-                  cd /home/catkin_ws/src && \
-                  catkin_init_workspace && \
-                  cd /home/catkin_ws/ && \
-                  echo 'source /home/catkin_ws/devel/setup.bash' >> /.bashrc
+RUN source /opt/ros/kinetic/setup.bash \
+                  && mkdir -p /home/catkin_ws/src \
+                  && cd /home/catkin_ws/src \
+                  && catkin_init_workspace \
+                  && cd /home/catkin_ws/ \
+                  && catkin_make \
+                  && echo 'source /home/catkin_ws/devel/setup.bash' >> /.bashrc
