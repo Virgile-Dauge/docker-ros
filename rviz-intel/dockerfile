@@ -9,8 +9,5 @@ RUN apt-get -qq update \
         libgl1-mesa-dri  \
         && rm -rf /var/lib/apt/lists/*
 
-#Changing default shell for multi commands
-SHELL ["bin/bash", "-c"]
-
 #Launching rviz
-CMD rosrun rviz rviz
+CMD ["rosrun", "rviz", "rviz"]
