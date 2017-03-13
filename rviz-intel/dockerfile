@@ -13,5 +13,4 @@ RUN apt-get -qq update \
 SHELL ["bin/bash", "-c"]
 
 #Launching rviz
-CMD source /opt/ros/kinetic/setup.bash \
-        && rosrun rviz rviz
+CMD rosrun rviz rviz
