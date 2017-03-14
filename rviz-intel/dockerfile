@@ -3,11 +3,12 @@ LABEL maintainer "virgile.dauge@telecomnancy.net"
 
 #Installing all required dependencies according to the source cloned before
 RUN apt-get -qq update \
-        && apt-get install -y \
-        ros-kinetic-rviz \
-        libgl1-mesa-glx  \
-        libgl1-mesa-dri  \
-        && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y \
+      apt-utils \
+      ros-kinetic-rviz \
+      libgl1-mesa-glx  \
+      libgl1-mesa-dri  \
+    && rm -rf /var/lib/apt/lists/*
 
 #Launching rviz
 CMD ["rosrun", "rviz", "rviz"]
