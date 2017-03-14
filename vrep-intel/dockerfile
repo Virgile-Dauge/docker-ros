@@ -2,14 +2,15 @@ FROM virgiletn/docker-ros:kinetic-full-gui-intel
 LABEL maintainer "virgile.dauge@telecomnancy.net"
 
 # install compilation tools
-RUN apt-get update && apt-get install -y \
-    wget \
-    cmake \
-    python-tempita \
-    python-catkin-tools \
-    python-lxml \
-    default-jre >/dev/null \
-&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -y \
+      wget \
+      cmake \
+      python-tempita \
+      python-catkin-tools \
+      python-lxml \
+      default-jre >/dev/null \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV VREP_RELEASE="V-REP_PRO_EDU_V3_3_2_64_Linux"
 ENV VREP_ROOT="/home/$VREP_RELEASE"
@@ -17,26 +18,41 @@ ENV VREP_ROOT="/home/$VREP_RELEASE"
 SHELL ["bin/bash", "-c"]
 #Get the archive for official website
 RUN cd home/ \
-        && wget -q "http://coppeliarobotics.com/files/$VREP_RELEASE.tar.gz" \
-        && tar zxf "$VREP_RELEASE.tar.gz" \
-        && rm "$VREP_RELEASE.tar.gz"
+    && wget -q "http://coppeliarobotics.com/files/$VREP_RELEASE.tar.gz" \
+    && tar zxf "$VREP_RELEASE.tar.gz" \
+    && rm "$VREP_RELEASE.tar.gz"
 
 RUN echo "export VREP_ROOT=\"$VREP_ROOT\"" >> ~/.bashrc
 
 #Install Saxon
-
 RUN mkdir -p ~/saxon/bin \
-          && cd ~/saxon \
-          && wget -q http://downloads.sourceforge.net/project/saxon/Saxon-HE/9.7/SaxonHE9-7-0-8J.zip  \
-          && unzip -q SaxonHE9-7-0-8J.zip \
-          && rm SaxonHE9-7-0-8J.zip \
-          && echo -e '#!/bin/sh\njava -jar "`dirname "$0"`/../saxon9he.jar" "$@"' > bin/saxon \
-          && chmod a+x bin/saxon \
-          && echo 'export PATH="$PATH:$HOME/saxon/bin"' >> ~/.bashrc \
-          && export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"
+    && cd ~/saxon \
+    && wget -q http://downloads.sourceforge.net/project/saxon/Saxon-HE/9.7/SaxonHE9-7-0-8J.zip  \
+    && unzip -q SaxonHE9-7-0-8J.zip \
+    && rm SaxonHE9-7-0-8J.zip \
+    && echo -e '#!/bin/sh\njava -jar "`dirname "$0"`/../saxon9he.jar" "$@"' > bin/saxon \
+    && chmod a+x bin/saxon \
+    && echo 'export PATH="$PATH:$HOME/saxon/bin"' >> ~/.bashrc \
+    && export PATH="$PATH:$HOME/saxon/bin"
 
-RUN cd home/catkin_ws/src \
-    && git clone -q https://github.com/fferri/v_repExtRosInterface.git vrep_ros_interface \
-    && cd .. \
-    # && catkin build --no-status --no-notify --no-summary >/dev/null \
-    # && cp -iv devel/lib/libv_repExtRosInterface.so "$VREP_ROOT/"
+#Install v-repStubsGen
+# RUN mkdir -p ~/python-packages \
+#     && cd ~/python-packages \
+#     && git clone -q https://github.com/fferri/v_repStubsGen.git \
+#     && echo 'export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"' >> ~/.bashrc \
+#     && export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"
+
+RUN mkdir -p ~/usr/bin/python \
+    && cd ~/usr/bin/python \
+    && git clone -q https://github.com/fferri/v_repStubsGen.git
+    # && echo 'export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"' >> ~/.bashrc \
+    # && export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"
+
+# RUN source /opt/ros/kinetic/setup.bash \
+#     && cd home/catkin_ws/ \
+#     && rm -rf build/ devel/ \
+#     && catkin build --no-status --no-notify --no-summary >/dev/null \
+#     && source devel/setup.bash \
+#     && git clone -q https://github.com/fferri/v_repExtRosInterface.git src/vrep_ros_interface \
+#     && catkin build --no-status --no-notify --no-summary >/dev/null \
+#     && cp -iv devel/lib/libv_repExtRosInterface.so "$VREP_ROOT/"
