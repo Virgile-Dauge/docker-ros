@@ -36,17 +36,11 @@ RUN mkdir -p ~/saxon/bin \
     && export PATH="$PATH:$HOME/saxon/bin"
 
 #Install v-repStubsGen
-# RUN mkdir -p ~/python-packages \
-#     && cd ~/python-packages \
-#     && git clone -q https://github.com/fferri/v_repStubsGen.git \
-#     && echo 'export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"' >> ~/.bashrc \
-#     && export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"
-
-RUN mkdir -p ~/usr/bin/python \
-    && cd ~/usr/bin/python \
-    && git clone -q https://github.com/fferri/v_repStubsGen.git
-    # && echo 'export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"' >> ~/.bashrc \
-    # && export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"
+RUN mkdir -p ~/python-packages \
+    && cd ~/python-packages \
+    && git clone -q https://github.com/fferri/v_repStubsGen.git \
+    && echo 'export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"' >> ~/.bashrc \
+    && export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"
 
 # RUN source /opt/ros/kinetic/setup.bash \
 #     && cd home/catkin_ws/ \
