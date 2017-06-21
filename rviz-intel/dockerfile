@@ -10,5 +10,7 @@ RUN apt-get -qq update \
       libgl1-mesa-dri  \
     && rm -rf /var/lib/apt/lists/*
 
+ADD https://raw.githubusercontent.com/virgileTN/docker-ros/master/rviz-intel/configs/vlp16.rviz /home/
+
 #Launching rviz
 CMD ["rosrun", "rviz", "rviz"]
