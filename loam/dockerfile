@@ -9,21 +9,22 @@ RUN git clone \
 #Installing all required dependencies according to the source cloned before
 RUN apt-get -qq update \
         && apt-get install -y \
-        software-properties-common \
-        python-software-properties \
+        # software-properties-common \
+        # python-software-properties \
         sudo \
         apt-utils \
         ros-kinetic-rviz \
+        ros-kinetic-percetion \
         libgl1-mesa-glx  \
         libgl1-mesa-dri  \
         && rosdep install --as-root apt:yes -r --from-paths /home/catkin_ws/ --ignore-src --rosdistro kinetic -y \
         && rm -rf /var/lib/apt/lists/*
 
-RUN add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl \
-        && apt-get -qq update \
-        && apt-get install -y \
-        libpcl-all \
-        && rm -rf /var/lib/apt/lists/*
+# RUN add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl \
+#         && apt-get -qq update \
+#         && apt-get install -y \
+#         libpcl-all \
+#         && rm -rf /var/lib/apt/lists/*
 #Changing default shell for multi commands
 SHELL ["bin/bash", "-c"]
 
