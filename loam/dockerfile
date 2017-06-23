@@ -14,7 +14,7 @@ RUN apt-get -qq update \
         sudo \
         apt-utils \
         ros-kinetic-rviz \
-        ros-kinetic-percetion \
+        ros-kinetic-percetion-pcl \
         libgl1-mesa-glx  \
         libgl1-mesa-dri  \
         && rosdep install --as-root apt:yes -r --from-paths /home/catkin_ws/ --ignore-src --rosdistro kinetic -y \
