@@ -9,6 +9,7 @@ RUN git clone \
 #Installing all required dependencies according to the source cloned before
 RUN apt-get -qq update \
         && apt-get install -y \
+        software-properties-common \
         python-software-properties \
         sudo \
         apt-utils \
