@@ -16,7 +16,7 @@ RUN apt-get -qq update \
         ros-kinetic-rviz \
         ros-kinetic-perception-pcl\
         ros-kinetic-pcl-ros \
-        libopenni2 \
+        libopenni2-dev \
         libgl1-mesa-glx  \
         libgl1-mesa-dri  \
         && rosdep install --as-root apt:yes -r --from-paths /home/catkin_ws/ --ignore-src --rosdistro kinetic -y \
