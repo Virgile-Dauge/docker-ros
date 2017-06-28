@@ -1,4 +1,4 @@
-FROM virgiletn/docker-ros:kinetic-core
+FROM virgiletn/docker-ros:kinetic-catkin-ws
 LABEL maintainer "virgile.dauge@inria.fr"
 
 #Changing default shell for multi commands
