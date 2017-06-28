@@ -15,6 +15,7 @@ RUN apt-get -qq update \
         apt-utils \
         ros-kinetic-rviz \
         ros-kinetic-perception-pcl\
+        ros-kinetic-vision-opencv \
         ros-kinetic-pcl-ros \
         libopenni2-0 \
         libopenni2-dev \
