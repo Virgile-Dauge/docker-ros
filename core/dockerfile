@@ -1,5 +1,11 @@
 FROM ros:kinetic-ros-core
-LABEL maintainer "virgile.dauge@telecomnancy.net"
+LABEL maintainer "virgile.dauge@inria.fr"
+
+#Changing default shell for multi commands
+SHELL ["bin/bash", "-c"]
+
+#sourcing ros-kinetic
+RUN echo 'source /opt/ros/kinetic/setup.bash' >> .bashrc
 
 #Launching roscore as default cmd
 CMD ["roscore"]
