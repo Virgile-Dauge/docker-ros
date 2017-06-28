@@ -1,0 +1,30 @@
+FROM virgiletn/docker-ros:kinetic-full-gui-intel
+LABEL maintainer "virgile.dauge@inria.fr"
+
+#Changing default shell for multi commands
+SHELL ["bin/bash", "-c"]
+
+#Clonning velodyne repository (getting last version)
+RUN git clone \
+        https://github.com/my-repo \
+        /home/catkin_ws/src/my-repo/
+
+#Installing all required dependencies according to the source cloned before
+RUN apt-get -qq update \
+        && apt-get install -y \
+        sudo \
+        && rosdep install --as-root apt:yes -r --from-paths /home/catkin_ws/ --ignore-src --rosdistro kinetic -y \
+        && rm -rf /var/lib/apt/lists/*
+
+#Compiling cloned sources
+RUN source /opt/ros/kinetic/setup.bash \
+        && cd /home/catkin_ws/ \
+        && catkin_make
+
+#You can also add other files as calibration files for instance
+ADD https://raw.githubusercontent.com/virgileTN/my-file /home/
+
+#Default command launching the node
+CMD cd /home/catkin_ws \
+        && source devel/setup.bash \
+        && roslaunch my-ros-package my-ros-package.launch option:=/home/my-file
