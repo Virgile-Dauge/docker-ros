@@ -1,0 +1,36 @@
+FROM virgiletn/docker-ros:kinetic-catkin-ws
+LABEL maintainer "virgile.dauge@inria.fr"
+
+#Changing default shell for multi commands
+SHELL ["bin/bash", "-c"]
+
+# nvidia-docker hooks
+LABEL com.nvidia.volumes.needed="nvidia_driver"
+ENV PATH /usr/local/nvidia/bin:${PATH}
+ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64:${LD_LIBRARY_PATH}
+ENV LIBGL_ALWAYS_INDIRECT 0
+
+#Installing rviz and intel graphics drivers
+RUN apt-get -qq update \
+    && apt-get install -y \
+      ros-kinetic-rviz \
+      libgl1-mesa-glx  \
+      libgl1-mesa-dri  \
+    && rm -rf /var/lib/apt/lists/*
+
+#Adding rviz conig from github repo.
+#Should CHANGE THIS ASAP, maybe clonning a repo with all configs ?
+ADD https://raw.githubusercontent.com/virgileTN/docker-ros/master/rviz-intel/configs/vlp16.rviz /home/
+
+ENV uid 1000
+ENV gid 1000
+RUN export uid=${uid} gid=${gid} \
+      &&  mkdir -p /ros \
+      &&  echo "ros:x:${uid}:${gid}:ros,,,:/ros:/bin/bash" >> /etc/passwd \
+      &&  echo "ros:x:${uid}:" >> /etc/group \
+      &&  echo "ros ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ros \
+      &&  chmod 0440 /etc/sudoers.d/ros \
+&& chown ${uid}:${gid} -R /home/ros
+
+#Launching rviz
+CMD ["rosrun", "rviz", "rviz"]
