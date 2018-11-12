@@ -10,11 +10,11 @@ A docker-compose file should at least have a version and a list of services. The
 version: '3'
 services:
   master:
-    image: virgiletn/docker-ros:kinetic-core
+    image: virgiletn/docker-ros:melodic-core
     container_name: master
 
   rviz:
-    image: virgiletn/docker-ros:kinetic-rviz-intel
+    image: virgiletn/docker-ros:melodic-rviz-intel
     container_name: rviz
     depends_on:
       - "master"

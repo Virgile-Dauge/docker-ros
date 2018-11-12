@@ -1,11 +1,11 @@
 version: '3'
 services:
   master:
-    image: virgiletn/docker-ros:kinetic-core
+    image: virgiletn/docker-ros:melodic-core
     container_name: master
 
   toto:
-    image: virgiletn/docker-ros:kinetic-core
+    image: virgiletn/docker-ros:melodic-core
     container_name: toto
     command:
         - bash

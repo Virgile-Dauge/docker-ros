@@ -1,4 +1,4 @@
-FROM virgiletn/docker-ros:kinetic-core
+FROM virgiletn/docker-ros:melodic-core
 LABEL maintainer "virgile.dauge@telecomnancy.net"
 
 # nvidia-docker hooks
@@ -11,7 +11,7 @@ ENV LIBGL_ALWAYS_INDIRECT 0
 RUN apt-get -qq update \
     && apt-get install -y \
       apt-utils \
-      ros-kinetic-rviz \
+      ros-melodic-rviz \
     && rm -rf /var/lib/apt/lists/*
 
 # IMPORTANT: Update these values to your primary computer user id and group id

@@ -20,7 +20,7 @@ docker run -it \
               -ROS_MASTER_URI=http://$HOSTNAME:11311 \
               --volume=/tmp/.X11-unix:/tmp/.X11-unix \
               --env="DISPLAY" \
-              virgiletn/docker-ros:kinetic-rviz-intel \
+              virgiletn/docker-ros:melodic-rviz-intel \
               rosrun rviz rviz
 ```
 Please see [Launch options page](https://github.com/virgileTN/docker-ros/wiki/launch-options) for more details on options.
@@ -31,7 +31,7 @@ See [docker-compose basics](https://github.com/virgileTN/docker-ros/wiki/docker-
 Just add a new service in the service list :
 ```
 rviz:
-  image: virgiletn/docker-ros:kinetic-rviz-intel
+  image: virgiletn/docker-ros:melodic-rviz-intel
   container_name: rviz
   depends_on:
     - "master"

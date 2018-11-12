@@ -1,4 +1,4 @@
-FROM virgiletn/docker-ros:kinetic-core
+FROM virgiletn/docker-ros:melodic-core
 LABEL maintainer "virgile.dauge@telecomnancy.net"
 
 # install compilation tools
@@ -11,10 +11,10 @@ RUN apt-get update \
 
 SHELL ["bin/bash", "-c"]
 # add environment setup
-RUN echo 'source /opt/ros/kinetic/setup.bash' >> .bashrc
+RUN echo 'source /opt/ros/melodic/setup.bash' >> .bashrc
 
 # Setup catkin workspace
-RUN source /opt/ros/kinetic/setup.bash \
+RUN source /opt/ros/melodic/setup.bash \
                   && mkdir -p /home/catkin_ws/src \
                   && cd /home/catkin_ws/src \
                   && catkin_init_workspace \

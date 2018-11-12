@@ -1,4 +1,4 @@
-FROM virgiletn/docker-ros:kinetic-catkin-ws
+FROM virgiletn/docker-ros:melodic-catkin-ws
 LABEL maintainer "virgile.dauge@inria.fr"
 
 #Clonning velodyne repository (getting last version)
@@ -13,15 +13,15 @@ RUN apt-get -qq update \
         # python-software-properties \
         sudo \
         apt-utils \
-        ros-kinetic-rviz \
-        ros-kinetic-perception-pcl\
-        ros-kinetic-vision-opencv \
-        ros-kinetic-pcl-ros \
+        ros-melodic-rviz \
+        ros-melodic-perception-pcl\
+        ros-melodic-vision-opencv \
+        ros-melodic-pcl-ros \
         libopenni2-0 \
         libopenni2-dev \
         libgl1-mesa-glx  \
         libgl1-mesa-dri  \
-        && rosdep install --as-root apt:yes -r --from-paths /home/catkin_ws/ --ignore-src --rosdistro kinetic -y \
+        && rosdep install --as-root apt:yes -r --from-paths /home/catkin_ws/ --ignore-src --rosdistro melodic -y \
         && rm -rf /var/lib/apt/lists/*
 
 # RUN add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl \
@@ -33,7 +33,7 @@ RUN apt-get -qq update \
 SHELL ["bin/bash", "-c"]
 
 #Compiling cloned sources
-RUN source /opt/ros/kinetic/setup.bash \
+RUN source /opt/ros/melodic/setup.bash \
         && cd /home/catkin_ws/ \
         && catkin_make
 

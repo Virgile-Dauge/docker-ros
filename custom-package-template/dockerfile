@@ -1,4 +1,4 @@
-FROM virgiletn/docker-ros:kinetic-catkin-ws
+FROM virgiletn/docker-ros:melodic-catkin-ws
 LABEL maintainer "virgile.dauge@inria.fr"
 
 #Clonning velodyne repository (getting last version)
@@ -10,14 +10,14 @@ RUN git clone \
 RUN apt-get -qq update \
         && apt-get install -y \
         sudo \
-        && rosdep install --as-root apt:yes -r --from-paths /home/catkin_ws/ --ignore-src --rosdistro kinetic -y \
+        && rosdep install --as-root apt:yes -r --from-paths /home/catkin_ws/ --ignore-src --rosdistro melodic -y \
         && rm -rf /var/lib/apt/lists/*
 
 #Changing default shell for multi commands
 SHELL ["bin/bash", "-c"]
 
 #Compiling cloned sources
-RUN source /opt/ros/kinetic/setup.bash \
+RUN source /opt/ros/melodic/setup.bash \
         && cd /home/catkin_ws/ \
         && catkin_make
 

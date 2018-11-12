@@ -1,4 +1,4 @@
-FROM ros:kinetic-ros-core
+FROM ros:melodic-ros-core
 LABEL maintainer "virgile.dauge@telecomnancy.net"
 
 #Launching roscore as default cmd

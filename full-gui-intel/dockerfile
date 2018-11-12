@@ -1,10 +1,10 @@
-FROM virgiletn/docker-ros:kinetic-catkin-ws
+FROM virgiletn/docker-ros:melodic-catkin-ws
 LABEL maintainer "virgile.dauge@telecomnancy.net"
 
 # install compilation tools
 RUN apt-get update \
     && apt-get install -y \
-      ros-kinetic-desktop-full \
+      ros-melodic-desktop-full \
       libgl1-mesa-glx  \
       libgl1-mesa-dri  \
     && rm -rf /var/lib/apt/lists/*

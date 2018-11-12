@@ -6,7 +6,7 @@ docker run -it \
             --rm \
             --net simple-network \
             --name master \
-            virgiletn/docker-ros:kinetic-core
+            virgiletn/docker-ros:melodic-core
 ```
 Please see [Launch options page](https://github.com/virgileTN/docker-ros/wiki/launch-options) for more details on options.
 
@@ -16,6 +16,6 @@ See [docker-compose basics](https://github.com/virgileTN/docker-ros/wiki/docker-
 Just add a new service in the service list :
 ```
 master:
-  image: virgiletn/docker-ros:kinetic-core
+  image: virgiletn/docker-ros:melodic-core
   container_name: master
 ```

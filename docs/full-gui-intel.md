@@ -14,6 +14,6 @@ docker run -it --rm \
                       --volume=/tmp/.X11-unix:/tmp/.X11-unix \
                       --env="DISPLAY" \
                       --env QT_X11_NO_MITSHM=1 \
-                      virgiletn/docker-ros:kinetic-full-gui-intel
+                      virgiletn/docker-ros:melodic-full-gui-intel
 ```
 Please see [Launch options page](https://github.com/virgileTN/docker-ros/wiki/launch-options) for more details on options.

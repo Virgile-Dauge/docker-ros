@@ -1,4 +1,4 @@
-FROM virgiletn/docker-ros:kinetic-full-gui-intel
+FROM virgiletn/docker-ros:melodic-full-gui-intel
 LABEL maintainer "virgile.dauge@telecomnancy.net"
 
 # install compilation tools
@@ -42,7 +42,7 @@ RUN mkdir -p ~/python-packages \
     && echo 'export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"' >> ~/.bashrc \
     && export PYTHONPATH="$PYTHONPATH:$HOME/python-packages"
 
-# RUN source /opt/ros/kinetic/setup.bash \
+# RUN source /opt/ros/melodic/setup.bash \
 #     && cd home/catkin_ws/ \
 #     && rm -rf build/ devel/ \
 #     && catkin build --no-status --no-notify --no-summary >/dev/null \
